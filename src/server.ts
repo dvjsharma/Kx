@@ -15,15 +15,10 @@ mongoose.connect(process.env.MONGO_URI as string)
   .then(() => console.log('MongoDB client connected'))
   .catch((error) => console.log('Error connecting to MongoDB client:', error));
 
-const temp = async () => {
-  console.log(`Fetching crypto data at machine time ${new Date().toISOString()}`);
+cron.schedule('0 */2 * * *', async () => {
+  console.log('Fetching crypto data...');
   await fetchCryptoData();
-}
-temp();
-// cron.schedule('0 */2 * * *', async () => {
-//   console.log('Fetching crypto data...');
-//   await fetchCryptoData();
-// });
+});
 
 app.use(express.json());
 
