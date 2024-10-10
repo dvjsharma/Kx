@@ -5,6 +5,9 @@ import cron from 'node-cron';
 import { fetchCryptoData } from './jobs/fetchCryptoData';
 import statsRoutes from './routes/statsRoutes';
 import deviationRoutes from './routes/deviationRoutes';
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
+import path from 'path';
 
 dotenv.config();
 
@@ -22,8 +25,11 @@ cron.schedule('0 */2 * * *', async () => {
 
 app.use(express.json());
 
+const swaggerDocument = YAML.load(path.join(__dirname, './openapi.yaml'));
+
 app.use('/api/v1', statsRoutes);
 app.use('/api/v1', deviationRoutes);
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(PORT, () => {
   console.log(`Server is up and burning on localhost:${PORT} 🔥`);

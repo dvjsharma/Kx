@@ -1,0 +1,50 @@
+openapi: 3.1.0
+info:
+  title: Crypto API
+  description: API for fetching cryptocurrency data and statistics
+  version: 1.0.0
+  contact:
+    email: divijs75@gmail.com
+servers:
+  - url: https://kxapi.dvjshx.club/api/v1
+paths:
+  /stats:
+    get:
+      summary: Get crypto stats
+      description: Fetches the latest statistics for a cryptocurrency
+      parameters:
+        - in: query
+          name: coin
+          required: true
+          schema:
+            type: string
+          description: Name of the cryptocurrency (e.g., bitcoin, ethereum)
+      responses:
+        200:
+          description: Success
+        400:
+          description: Invalid or missing coin parameter
+        404:
+          description: No data found for the requested coin
+        500:
+          description: Internal server error
+  /deviation:
+    get:
+      summary: Get price deviation
+      description: Fetches the standard deviation of the prices
+      parameters:
+        - in: query
+          name: coin
+          required: true
+          schema:
+            type: string
+          description: Name of the cryptocurrency (e.g., bitcoin, ethereum)
+      responses:
+        200:
+          description: Success
+        400:
+          description: Invalid or missing coin parameter
+        404:
+          description: No data found for the requested coin
+        500:
+          description: Internal server error
