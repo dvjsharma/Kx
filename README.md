@@ -1,5 +1,9 @@
 # Cryptocurrency Data Management API
 
+## Links
+
+YouTube video explaining my approach: [KoinX context](https://youtu.be/4FPwz7qDCB0)
+
 ## Overview
 This API provides endpoints to manage cryptocurrency data, including fetching statistics and calculating standard deviation for price records.
 
